@@ -45,10 +45,16 @@ vertexPos pos[] = { { 2.0f, 1.0f, // x,y
 0.0f, 1.0f, 0.0f }  //rgba
 };
 
-float triangleData[] = { 
-0.0f, 1.0f, 0.0f, // Top
--1.0f, -1.0f, 0.0f, // Bottom Left
-1.0f, -1.0f, 0.0f }; //Bottom Right
+float triangleData[] = {
+	0.0f, 1.0f, 0.0f, // Top
+	-1.0f, -1.0f, 0.0f, // Bottom Left
+	1.0f, -1.0f, 0.0f,  //Bottom Right
+};
+
+
+
+
+
 
 #pragma region Methods
 
@@ -76,7 +82,6 @@ void render()
 	glEnableClientState(GL_VERTEX_ARRAY);
 
 
-
 	//Switch to ModelView
 	glMatrixMode(GL_MODELVIEW);
 	//Reset using the Indentity Matrix
@@ -84,73 +89,6 @@ void render()
 	//Translate to -5.0f on z-axis
 	glTranslatef(0.0f, 0.0f, -5.0f);
 
-	//Begin drawing triangles (standard triangle)
-	//glBegin(GL_TRIANGLES);
-	//glColor3f(1.0f, 0.0f, 0.0f); //Colour of the vertices
-	//glVertex3f(0.0f, 1.0f, 0.0f); // Top
-	//glVertex3f(-1.0f, -1.0f, 0.0f); // Bottom Left
-	//glVertex3f(1.0f, -1.0f, 0.0f); // Bottom Right
-	//glEnd();
-
-	//Right-angled Triangle
-	//glBegin(GL_TRIANGLES);
-	//glColor3f(0.5f, 0.0f, 1.0f); //Colour of the vertices
-	//glVertex3f(1.0f, 1.0f, 0.0f); // Top
-	//glColor3f(1.0f, 0.0f, 0.0f);
-	//glVertex3f(-1.0f, -1.0f, 0.0f); // Bottom Left
-	//glColor3f(0.0f, 1.0f, 0.0f);
-	//glVertex3f(1.0f, -1.0f, 0.0f); // Bottom Right
-	//glEnd();
-
-	//Mirrored Right-angled triangled
-	//glBegin(GL_TRIANGLES);
-	//glColor3f(0.5f, 0.0f, 1.0f); //Colour of the vertices
-	//glVertex3f(2.0f, 1.0f, 0.0f); // Top
-	//glColor3f(1.0f, 0.0f, 0.0f);
-	//glVertex3f(2.0f, -1.0f, 0.0f); // Bottom Left
-	//glColor3f(0.0f, 1.0f, 0.0f);
-	//glVertex3f(0.0f, -1.0f, 0.0f); // Bottom Right
-	//glEnd();
-
-	//glBegin(GL_TRIANGLES);
-	//glColor3f(0.0f, 1.0f, 0.0f);   //Colour of the vertices
-	//glVertex3f(-2.1f, 1.0f, 0.0f); // Top
-	//glColor3f(1.0f, 0.0f, 0.0f);
-	//glVertex3f(-2.1f, -1.0f, 0.0f); // Bottom Left
-	//glColor3f(0.5f, 0.0f, 1.0f);
-	//glVertex3f(-0.1f, -1.0f, 0.0f); // Bottom Right
-	//glEnd();
-
-
-
-	int i = 0;
-
-	while (i < 2){
-	glBegin(GL_TRIANGLES);
-	glColor3f(pos[i].r, pos[i].g, pos[i].b);
-	glVertex3f(pos[i].x, pos[i].y, 0.0f);
-	i++;
-	glColor3f(pos[i].r, pos[i].g, pos[i].b);
-	glVertex3f(pos[i].x, pos[i].y, 0.0f);
-	i++;
-	glColor3f(pos[i].r, pos[i].g, pos[i].b);
-	glVertex3f(pos[i].x, pos[i].y, 0.0f);
-	glEnd();
-}
-	
-	
-
-	//this isn't drawing the triangles... WHY!?
-	//glBegin(GL_TRIANGLES);
-
-	//for (int i = 0; i < 2; i++){
-	//
-	//	glColor3f(pos[i].r, pos[i].g, pos[i].b);
-	//	glVertex3f(pos[i].x, pos[i].y, 0.0f);
-	//	
-	//}
-
-	//glEnd();
 
 	//Switch to ModelView
 	glMatrixMode(GL_MODELVIEW);
@@ -160,6 +98,7 @@ void render()
 	glTranslatef(0.0f, 0.0f, -6.0f);
 	//Actually draw the triangle, giving the number of vertices provided
 	glDrawArrays(GL_TRIANGLES, 0, sizeof(triangleData) / (3 * sizeof(float)));
+
 
 
 	SDL_GL_SwapWindow(window);
