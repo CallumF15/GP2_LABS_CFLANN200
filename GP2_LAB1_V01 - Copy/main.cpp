@@ -1,14 +1,20 @@
 //header files
+
+#include <GL/glew.h> //note: this has to be above the opengl/sdl headers.
 #include <iostream>
 #include <SDL.h>
 #include <SDL_opengl.h>
 #include <gl/GLU.h>
 
+
 using namespace std;
 
 
-//Variables go here.
-
+struct vertexPos
+{
+	float x, y;
+	float r, g, b;
+};
 
 
 #pragma region Variables
@@ -25,13 +31,12 @@ bool running = true;
 
 //SDL GL Context
 SDL_GLContext glcontext = NULL;
+
+GLuint triangleVBO;
+
 #pragma endregion
 
-struct vertexPos
-{
-	float x, y;
-	float r, g, b;
-};
+
 
 vertexPos pos[] = { { 2.0f, 1.0f, // x,y
 0.5f, 0.0f, 1.0f }, //rgba
@@ -41,7 +46,13 @@ vertexPos pos[] = { { 2.0f, 1.0f, // x,y
 0.0f, 1.0f, 0.0f }  //rgba
 };
 
+float triangleData[] = { 
+0.0f, 1.0f, 0.0f, // Top
+-1.0f, -1.0f, 0.0f, // Bottom Left
+1.0f, -1.0f, 0.0f }; //Bottom Right
 
+
+#pragma region Methods
 
 void update()
 {
@@ -150,6 +161,12 @@ void initOpenGL()
 {
 	glcontext = SDL_GL_CreateContext(window);
 
+	GLenum err = glewInit();
+
+	if (GLEW_OK != err){
+		/* Problem: glewInit failed, something is seriously wrong. */
+		cout << "Error: " << glewGetErrorString(err) << endl;
+	}
 
 	//Something went wrong in creating the context if it is still NULL
 	if (!glcontext){
@@ -174,6 +191,17 @@ void initOpenGL()
 
 	//turn on best perspective correction
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+
+}
+
+void initGeometry()
+{
+	//create buffer
+	glGenBuffers(1, &triangleVBO);
+	//make the new VBO active
+	glBindBuffer(GL_ARRAY_BUFFER, triangleVBO);
+	//copy vertex data to VBO
+	glBufferData(GL_ARRAY_BUFFER, sizeof(triangleData), triangleData, GL_STATIC_DRAW);
 
 }
 
@@ -306,4 +334,4 @@ int main(int argc, char * arg[]) {
 
 }
 
-
+#pragma endregion
