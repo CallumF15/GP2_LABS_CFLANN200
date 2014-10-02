@@ -37,7 +37,6 @@ GLuint triangleVBO;
 #pragma endregion
 
 
-
 vertexPos pos[] = { { 2.0f, 1.0f, // x,y
 0.5f, 0.0f, 1.0f }, //rgba
 { 2.0f, -1.0f,    	  //x,y
@@ -50,9 +49,6 @@ float triangleData[] = {
 0.0f, 1.0f, 0.0f, // Top
 -1.0f, -1.0f, 0.0f, // Bottom Left
 1.0f, -1.0f, 0.0f }; //Bottom Right
-
-//minor change
-
 
 #pragma region Methods
 
@@ -155,6 +151,15 @@ void render()
 	//}
 
 	//glEnd();
+
+	//Switch to ModelView
+	glMatrixMode(GL_MODELVIEW);
+	//Reset using the Indentity Matrix
+	glLoadIdentity();
+	//translate
+	glTranslatef(0.0f, 0.0f, -6.0f);
+	//Actually draw the triangle, giving the number of vertices provided
+	glDrawArrays(GL_TRIANGLES, 0, sizeof(triangleData) / (3 * sizeof(float)));
 
 
 	SDL_GL_SwapWindow(window);
