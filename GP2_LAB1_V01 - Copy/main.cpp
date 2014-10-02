@@ -51,6 +51,8 @@ float triangleData[] = {
 -1.0f, -1.0f, 0.0f, // Bottom Left
 1.0f, -1.0f, 0.0f }; //Bottom Right
 
+//minor change
+
 
 #pragma region Methods
 
@@ -65,6 +67,17 @@ void render()
 	glClearColor(0.9f, 0.9f, 0.9f, 0.3f);
 	//clear the colour and depth buffer
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	//Make the new VBO active. Repeat here as a sanity check( may have changed 
+	//since initialisation)
+	glBindBuffer(GL_ARRAY_BUFFER, triangleVBO);
+
+	//Establish its 3 coordinates per vertex with zero stride(space between elements) 
+	//in array and contain floating point numbers
+	glVertexPointer(3, GL_FLOAT, 0, NULL);
+
+	//Establish array contains vertices (not normals, colours, texture coords etc)
+	glEnableClientState(GL_VERTEX_ARRAY);
 
 
 
@@ -142,14 +155,6 @@ void render()
 	//}
 
 	//glEnd();
-
-
-
-
-
-
-
-
 
 
 	SDL_GL_SwapWindow(window);
@@ -236,8 +241,6 @@ void setViewport(int width, int height){
 }
 
 
-
-
 void InitWindow(int width, int height, bool fullscreen) {
 	window = SDL_CreateWindow(
 		"Lab1", //Window Title
@@ -252,6 +255,7 @@ void InitWindow(int width, int height, bool fullscreen) {
 
 void CleanUp()
 {
+	glDeleteBuffers(1, &triangleVBO);
 	SDL_DestroyWindow(window);
 	SDL_Quit();
 	SDL_GL_DeleteContext(glcontext);
@@ -270,6 +274,7 @@ int main(int argc, char * arg[]) {
 
 	//Call our InitOpenGL Function
 	initOpenGL();
+	initGeometry();
 	//Set our viewport
 	setViewport(WINDOW_WIDTH, WINDOW_HEIGHT);
 
