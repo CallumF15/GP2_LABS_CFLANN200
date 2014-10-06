@@ -5,6 +5,7 @@
 #include <SDL.h>
 #include <SDL_opengl.h>
 #include <gl/GLU.h>
+#include "Vertex.h"
 
 
 using namespace std;
@@ -14,6 +15,12 @@ struct vertexPos
 {
 	float x, y;
 	float r, g, b;
+};
+
+Vertex triangleData[] = {
+	0.0f, 1.0f, 0.0f, // Top
+	-1.0f, -1.0f, 0.0f, // Bottom Left
+	1.0f, -1.0f, 0.0f,  //Bottom Right
 };
 
 
@@ -35,21 +42,6 @@ SDL_GLContext glcontext = NULL;
 GLuint triangleVBO;
 
 #pragma endregion
-
-
-vertexPos pos[] = { { 2.0f, 1.0f, // x,y
-0.5f, 0.0f, 1.0f }, //rgba
-{ 2.0f, -1.0f,    	  //x,y
-1.0f, 0.0f, 0.0f }, //rgba
-{ 0.0f, -1.0f,		  // x,y
-0.0f, 1.0f, 0.0f }  //rgba
-};
-
-float triangleData[] = {
-	0.0f, 1.0f, 0.0f, // Top
-	-1.0f, -1.0f, 0.0f, // Bottom Left
-	1.0f, -1.0f, 0.0f,  //Bottom Right
-};
 
 
 
@@ -97,9 +89,20 @@ void render()
 	//translate
 	glTranslatef(0.0f, 0.0f, -6.0f);
 	//Actually draw the triangle, giving the number of vertices provided
+	glColor3f(1.0f, 1.0f, 0.0f);
+	
+	//glDrawArrays(GL_TRIANGLES, 0, sizeof(triangleData) / (3 * sizeof(float), 5));
+	//glMultiDrawArrays(GL_TRIANGLES, 0, GL_UNSIGNED_INT, 2);
+
+	glDrawArrays(GL_TRIANGLES, 0, sizeof(triangleData) / (3 * sizeof(float)));
+	
+	glTranslatef(0.5f, -0.5f, 0.0f);
 	glDrawArrays(GL_TRIANGLES, 0, sizeof(triangleData) / (3 * sizeof(float)));
 
+	glTranslatef(0.5f, -0.5f, 0.0f);
+	glDrawArrays(GL_TRIANGLES, 0, sizeof(triangleData) / (3 * sizeof(float)));
 
+	
 
 	SDL_GL_SwapWindow(window);
 }
@@ -245,24 +248,16 @@ int main(int argc, char * arg[]) {
 				switch (event.key.keysym.sym){
 
 				case SDLK_RIGHT:
-					pos[0].x += 0.2f;
-					pos[1].x += 0.2f;
-					pos[2].x += 0.2f;
+			
 					break;
 				case SDLK_LEFT:
-					pos[0].x -= 0.2f;
-					pos[1].x -= 0.2f;
-					pos[2].x -= 0.2f;
+				
 					break;
 				case SDLK_UP:
-					pos[0].y += 0.2f;
-					pos[1].y += 0.2f;
-					pos[2].y += 0.2f;
+				
 					break;
 				case SDLK_DOWN:
-					pos[0].y -= 0.2f;
-					pos[1].y -= 0.2f;
-					pos[2].y -= 0.2f;
+				
 					break;
 				default:
 					break;
