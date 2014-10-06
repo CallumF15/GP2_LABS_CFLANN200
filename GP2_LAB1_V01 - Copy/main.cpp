@@ -17,13 +17,93 @@ struct vertexPos
 	float r, g, b;
 };
 
-Vertex triangleData[] = {{
-	0.0f, 1.0f, 0.0f,       //xyz
-	1.0f, 0.0f, 0.0f, 1.0f},//rgba
-	{-1.0f, -1.0f, 0.0f,    //xyz
-	0.0f, 1.0f, 0.0f, 1.0f},//rgba
-	{1.0f, -1.0f, 0.0f,     //xyz
-	0.0f, 0.0f, 1.0f, 1.0f} //rgba
+Vertex triangleData[] = {
+		//Front
+		{ -0.5f, 0.5f, 0.5f,
+		1.0f, 0.0f, 1.0f, 1.0f },// Top Left
+		{ -0.5f, -0.5f, 0.5f,
+		1.0f, 1.0f, 0.0f, 1.0f },// Bottom Left
+		{ 0.5f, -0.5f, 0.5f,
+		0.0f, 1.0f, 1.0f, 1.0f }, //Bottom Right
+		{ 0.5f, 0.5f, 0.5f,
+		1.0f, 0.0f, 1.0f, 1.0f },// Top Right
+		{ -0.5f, 0.5f, 0.5f,
+		1.0f, 0.0f, 1.0f, 1.0f },// Top Left
+		{ 0.5f, -0.5f, 0.5f,
+		0.0f, 1.0f, 1.0f, 1.0f }, //Bottom Right
+
+		//back
+		{ -0.5f, 0.5f, -0.5f,
+		1.0f, 0.0f, 1.0f, 1.0f },// Top Left
+		{ -0.5f, -0.5f, -0.5f,
+		1.0f, 1.0f, 0.0f, 1.0f },// Bottom Left
+		{ 0.5f, -0.5f, -0.5f,
+		0.0f, 1.0f, 1.0f, 1.0f }, //Bottom Right
+		{ 0.5f, 0.5f, -0.5f,
+		1.0f, 0.0f, 1.0f, 1.0f },// Top Right
+		{ -0.5f, 0.5f, -0.5f,
+		1.0f, 0.0f, 1.0f, 1.0f },// Top Left
+		{ 0.5f, -0.5f, -0.5f,
+		0.0f, 1.0f, 1.0f, 1.0f }, //Bottom Right
+
+
+		//LEFT (note: triangles don't connect to form square?)
+		{ -0.5f, 0.5f, 0.5f,
+		0.5f, 0.0f, 0.5f, 1.0f },// Top front Left
+		{ -0.5f, -0.5f, 0.5f,
+		0.4f, 0.5f, 0.2f, 1.0f },// Bottom front Left
+		{ -0.5f, -0.5f, -0.5f,
+		0.5f, 0.0f, 0.5f, 1.0f }, //Bottom back left
+		{ -0.5f, 0.5f, -0.5f,
+		0.5f, 0.0f, 0.5f, 1.0f },//Top back left
+		{ -0.5f, 0.5f, 0.5f,
+		0.5f, 0.0f, 0.5f, 1.0f },//Top front Left
+		{ -0.5f, -0.5f, -0.5f,
+		0.5f, 0.0f, 0.5f, 1.0f }, //Bottom back left
+
+		//Right (check this)
+		{ 0.5f, 0.5f, 0.5f,
+		0.5f, 0.5f, 0.5f, 1.0f },// Top front right
+		{ 0.5f, -0.5f, 0.5f,
+		0.5f, 0.5f, 0.5f, 1.0f },// Bottom front right
+		{ 0.5f, -0.5f, -0.5f,
+		0.5f, 0.5f, 0.5f, 1.0f }, //Bottom back right
+		{ 0.5f, 0.5f, -0.5f,
+		0.5f, 0.5f, 0.5f, 1.0f },//Top back right
+		{ 0.5f, 0.5f, 0.5f,
+		0.5f, 0.5f, 0.5f, 1.0f },//Top front right
+		{ 0.5f, -0.5f, -0.5f,
+		0.5f, 0.5f, 0.5f, 1.0f }, //Bottom back right
+
+		//TODO: /TOP/BOTTOM
+
+		//TOP
+		{-0.5f, 0.5f, 0.5f,
+		0.2f, 0.2f, 0.2f, 1.0f },// Top front left
+		{ 0.5f, 0.5f, 0.5f,
+		0.2f, 0.2f, 0.2f, 1.0f },//top front right
+		{-0.5f, 0.5f, -0.5f,
+		0.2f, 0.2f, 0.2f, 1.0f }, //top back left
+		{ 0.5f, 0.5f, 0.5f,
+		0.2f, 0.2f, 0.2f, 1.0f },// Top front right
+		{ 0.5f, 0.5f, -0.5f,
+		0.2f, 0.2f, 0.2f, 1.0f },//top back right
+		{ -0.5f, 0.5f, -0.5f,
+		0.2f, 0.2f, 0.2f, 1.0f }, //top back left
+
+		//BOTTOM
+		{ -0.5f, -0.5f, 0.5f,
+		0.4f, 0.4f, 0.4f, 1.0f },//Bottom front left
+		{ 0.5f, -0.5f, 0.5f,
+		0.4f, 0.4f, 0.4f, 1.0f },//Bottom front right
+		{ -0.5f, -0.5f, -0.5f,
+		0.4f, 0.4f, 0.4f, 1.0f }, //Bottom back left
+		{ 0.5f, -0.5f, 0.5f,
+		0.4f, 0.4f, 0.4f, 1.0f },// Bottom front right
+		{ 0.5f, -0.5f, -0.5f,
+		0.4f, 0.4f, 0.4f, 1.0f },//Bottom back right
+		{ -0.5f, -0.5f, -0.5f,
+		0.4f, 0.4f, 0.4f, 1.0f }, //Bottom back left
 };
 
 
@@ -44,6 +124,9 @@ bool running = true;
 SDL_GLContext glcontext = NULL;
 
 GLuint triangleVBO;
+
+
+bool rotating = false;
 
 #pragma endregion
 
@@ -105,13 +188,14 @@ void render()
 	//glDrawArrays(GL_TRIANGLES, 0, sizeof(triangleData) / (3 * sizeof(float), 5));
 	//glMultiDrawArrays(GL_TRIANGLES, 0, GL_UNSIGNED_INT, 2);
 
-	glDrawArrays(GL_TRIANGLES, 0, sizeof(triangleData) / (sizeof(Vertex)));
-	
-	glTranslatef(0.5f, -0.5f, 0.0f);
+	glRotatef(-45, 0.0f, 1.0f, 0.0f);
 	glDrawArrays(GL_TRIANGLES, 0, sizeof(triangleData) / (sizeof(Vertex)));
 
-	glTranslatef(0.5f, -0.5f, 0.0f);
-	glDrawArrays(GL_TRIANGLES, 0, sizeof(triangleData) / (sizeof(Vertex)));
+	////glRotatef(60, 0.5, 0.5, 0.0);	
+	//glTranslatef(0.5f, -0.5f, 0.0f);
+	//glDrawArrays(GL_TRIANGLES, 0, sizeof(triangleData) / (sizeof(Vertex)));
+
+
 
 	
 
@@ -262,7 +346,7 @@ int main(int argc, char * arg[]) {
 			
 					break;
 				case SDLK_LEFT:
-				
+					rotating = true;
 					break;
 				case SDLK_UP:
 				
