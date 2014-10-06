@@ -17,11 +17,15 @@ struct vertexPos
 	float r, g, b;
 };
 
-Vertex triangleData[] = {
-	0.0f, 1.0f, 0.0f, // Top
-	-1.0f, -1.0f, 0.0f, // Bottom Left
-	1.0f, -1.0f, 0.0f,  //Bottom Right
+Vertex triangleData[] = {{
+	0.0f, 1.0f, 0.0f,       //xyz
+	1.0f, 0.0f, 0.0f, 1.0f},//rgba
+	{-1.0f, -1.0f, 0.0f,    //xyz
+	0.0f, 1.0f, 0.0f, 1.0f},//rgba
+	{1.0f, -1.0f, 0.0f,     //xyz
+	0.0f, 0.0f, 1.0f, 1.0f} //rgba
 };
+
 
 
 #pragma region Variables
@@ -68,11 +72,14 @@ void render()
 
 	//Establish its 3 coordinates per vertex with zero stride(space between elements) 
 	//in array and contain floating point numbers
-	glVertexPointer(3, GL_FLOAT, 0, NULL);
+	glVertexPointer(3, GL_FLOAT, sizeof(Vertex), NULL);
+	//The last parameter basically says that the colours start 3 floats into 
+	// each element of the array
+	glColorPointer(4, GL_FLOAT, sizeof(Vertex), (void**)(3 * sizeof(float)));
 
-	//Establish array contains vertices (not normals, colours, texture coords etc)
+	//Establish array contains vertices & colours
 	glEnableClientState(GL_VERTEX_ARRAY);
-
+	glEnableClientState(GL_COLOR_ARRAY);
 
 	//Switch to ModelView
 	glMatrixMode(GL_MODELVIEW);
@@ -86,21 +93,25 @@ void render()
 	glMatrixMode(GL_MODELVIEW);
 	//Reset using the Indentity Matrix
 	glLoadIdentity();
+
+
+	//calculates view matrix/pushes onto top of matrix stack
+	gluLookAt(0.0, 0.0, 0.0, 0.0, 0.0, -1.0f, 0.0, 1.0, 0.0);
+
 	//translate
 	glTranslatef(0.0f, 0.0f, -6.0f);
+
 	//Actually draw the triangle, giving the number of vertices provided
-	glColor3f(1.0f, 1.0f, 0.0f);
-	
 	//glDrawArrays(GL_TRIANGLES, 0, sizeof(triangleData) / (3 * sizeof(float), 5));
 	//glMultiDrawArrays(GL_TRIANGLES, 0, GL_UNSIGNED_INT, 2);
 
-	glDrawArrays(GL_TRIANGLES, 0, sizeof(triangleData) / (3 * sizeof(float)));
+	glDrawArrays(GL_TRIANGLES, 0, sizeof(triangleData) / (sizeof(Vertex)));
 	
 	glTranslatef(0.5f, -0.5f, 0.0f);
-	glDrawArrays(GL_TRIANGLES, 0, sizeof(triangleData) / (3 * sizeof(float)));
+	glDrawArrays(GL_TRIANGLES, 0, sizeof(triangleData) / (sizeof(Vertex)));
 
 	glTranslatef(0.5f, -0.5f, 0.0f);
-	glDrawArrays(GL_TRIANGLES, 0, sizeof(triangleData) / (3 * sizeof(float)));
+	glDrawArrays(GL_TRIANGLES, 0, sizeof(triangleData) / (sizeof(Vertex)));
 
 	
 
