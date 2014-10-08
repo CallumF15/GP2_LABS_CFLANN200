@@ -18,7 +18,8 @@ struct vertexPos
 };
 
 Vertex triangleData[] = {
-		//Front
+
+	//Front
 		{ -0.5f, 0.5f, 0.5f,
 		1.0f, 0.0f, 1.0f, 1.0f },// Top Left
 		{ -0.5f, -0.5f, 0.5f,
@@ -27,11 +28,6 @@ Vertex triangleData[] = {
 		0.0f, 1.0f, 1.0f, 1.0f }, //Bottom Right
 		{ 0.5f, 0.5f, 0.5f,
 		1.0f, 0.0f, 1.0f, 1.0f },// Top Right
-		{ -0.5f, 0.5f, 0.5f,
-		1.0f, 0.0f, 1.0f, 1.0f },// Top Left
-		{ 0.5f, -0.5f, 0.5f,
-		0.0f, 1.0f, 1.0f, 1.0f }, //Bottom Right
-
 		//back
 		{ -0.5f, 0.5f, -0.5f,
 		1.0f, 0.0f, 1.0f, 1.0f },// Top Left
@@ -41,69 +37,116 @@ Vertex triangleData[] = {
 		0.0f, 1.0f, 1.0f, 1.0f }, //Bottom Right
 		{ 0.5f, 0.5f, -0.5f,
 		1.0f, 0.0f, 1.0f, 1.0f },// Top Right
-		{ -0.5f, 0.5f, -0.5f,
-		1.0f, 0.0f, 1.0f, 1.0f },// Top Left
-		{ 0.5f, -0.5f, -0.5f,
-		0.0f, 1.0f, 1.0f, 1.0f }, //Bottom Right
 
+		////Front
+		//{ -0.5f, 0.5f, 0.5f,
+		//1.0f, 0.0f, 1.0f, 1.0f },// Top Left
+		//{ -0.5f, -0.5f, 0.5f,
+		//1.0f, 1.0f, 0.0f, 1.0f },// Bottom Left
+		//{ 0.5f, -0.5f, 0.5f,
+		//0.0f, 1.0f, 1.0f, 1.0f }, //Bottom Right
+		//{ 0.5f, 0.5f, 0.5f,
+		//1.0f, 0.0f, 1.0f, 1.0f },// Top Right
+		//{ -0.5f, 0.5f, 0.5f,
+		//1.0f, 0.0f, 1.0f, 1.0f },// Top Left
+		//{ 0.5f, -0.5f, 0.5f,
+		//0.0f, 1.0f, 1.0f, 1.0f }, //Bottom Right
 
-		//LEFT (note: triangles don't connect to form square?)
-		{ -0.5f, 0.5f, 0.5f,
-		0.5f, 0.0f, 0.5f, 1.0f },// Top front Left
-		{ -0.5f, -0.5f, 0.5f,
-		0.4f, 0.5f, 0.2f, 1.0f },// Bottom front Left
-		{ -0.5f, -0.5f, -0.5f,
-		0.5f, 0.0f, 0.5f, 1.0f }, //Bottom back left
-		{ -0.5f, 0.5f, -0.5f,
-		0.5f, 0.0f, 0.5f, 1.0f },//Top back left
-		{ -0.5f, 0.5f, 0.5f,
-		0.5f, 0.0f, 0.5f, 1.0f },//Top front Left
-		{ -0.5f, -0.5f, -0.5f,
-		0.5f, 0.0f, 0.5f, 1.0f }, //Bottom back left
+		////back
+		//{ -0.5f, 0.5f, -0.5f,
+		//1.0f, 0.0f, 1.0f, 1.0f },// Top Left
+		//{ -0.5f, -0.5f, -0.5f,
+		//1.0f, 1.0f, 0.0f, 1.0f },// Bottom Left
+		//{ 0.5f, -0.5f, -0.5f,
+		//0.0f, 1.0f, 1.0f, 1.0f }, //Bottom Right
+		//{ 0.5f, 0.5f, -0.5f,
+		//1.0f, 0.0f, 1.0f, 1.0f },// Top Right
+		//{ -0.5f, 0.5f, -0.5f,
+		//1.0f, 0.0f, 1.0f, 1.0f },// Top Left
+		//{ 0.5f, -0.5f, -0.5f,
+		//0.0f, 1.0f, 1.0f, 1.0f }, //Bottom Right
 
-		//Right (check this)
-		{ 0.5f, 0.5f, 0.5f,
-		0.5f, 0.5f, 0.5f, 1.0f },// Top front right
-		{ 0.5f, -0.5f, 0.5f,
-		0.5f, 0.5f, 0.5f, 1.0f },// Bottom front right
-		{ 0.5f, -0.5f, -0.5f,
-		0.5f, 0.5f, 0.5f, 1.0f }, //Bottom back right
-		{ 0.5f, 0.5f, -0.5f,
-		0.5f, 0.5f, 0.5f, 1.0f },//Top back right
-		{ 0.5f, 0.5f, 0.5f,
-		0.5f, 0.5f, 0.5f, 1.0f },//Top front right
-		{ 0.5f, -0.5f, -0.5f,
-		0.5f, 0.5f, 0.5f, 1.0f }, //Bottom back right
+		////LEFT (note: triangles don't connect to form square?)
+		//{ -0.5f, 0.5f, 0.5f,
+		//0.5f, 0.0f, 0.5f, 1.0f },// Top front Left
+		//{ -0.5f, -0.5f, 0.5f,
+		//0.4f, 0.5f, 0.2f, 1.0f },// Bottom front Left
+		//{ -0.5f, -0.5f, -0.5f,
+		//0.5f, 0.0f, 0.5f, 1.0f }, //Bottom back left
+		//{ -0.5f, 0.5f, -0.5f,
+		//0.5f, 0.0f, 0.5f, 1.0f },//Top back left
+		//{ -0.5f, 0.5f, 0.5f,
+		//0.5f, 0.0f, 0.5f, 1.0f },//Top front Left
+		//{ -0.5f, -0.5f, -0.5f,
+		//0.5f, 0.0f, 0.5f, 1.0f }, //Bottom back left
 
-		//TODO: /TOP/BOTTOM
+		////Right (check this)
+		//{ 0.5f, 0.5f, 0.5f,
+		//0.5f, 0.5f, 0.5f, 1.0f },// Top front right
+		//{ 0.5f, -0.5f, 0.5f,
+		//0.5f, 0.5f, 0.5f, 1.0f },// Bottom front right
+		//{ 0.5f, -0.5f, -0.5f,
+		//0.5f, 0.5f, 0.5f, 1.0f }, //Bottom back right
+		//{ 0.5f, 0.5f, -0.5f,
+		//0.5f, 0.5f, 0.5f, 1.0f },//Top back right
+		//{ 0.5f, 0.5f, 0.5f,
+		//0.5f, 0.5f, 0.5f, 1.0f },//Top front right
+		//{ 0.5f, -0.5f, -0.5f,
+		//0.5f, 0.5f, 0.5f, 1.0f }, //Bottom back right
 
-		//TOP
-		{-0.5f, 0.5f, 0.5f,
-		0.2f, 0.2f, 0.2f, 1.0f },// Top front left
-		{ 0.5f, 0.5f, 0.5f,
-		0.2f, 0.2f, 0.2f, 1.0f },//top front right
-		{-0.5f, 0.5f, -0.5f,
-		0.2f, 0.2f, 0.2f, 1.0f }, //top back left
-		{ 0.5f, 0.5f, 0.5f,
-		0.2f, 0.2f, 0.2f, 1.0f },// Top front right
-		{ 0.5f, 0.5f, -0.5f,
-		0.2f, 0.2f, 0.2f, 1.0f },//top back right
-		{ -0.5f, 0.5f, -0.5f,
-		0.2f, 0.2f, 0.2f, 1.0f }, //top back left
+		////TOP
+		//{-0.5f, 0.5f, 0.5f,
+		//0.2f, 0.2f, 0.2f, 1.0f },// Top front left
+		//{ 0.5f, 0.5f, 0.5f,
+		//0.2f, 0.2f, 0.2f, 1.0f },//top front right
+		//{-0.5f, 0.5f, -0.5f,
+		//0.2f, 0.2f, 0.2f, 1.0f }, //top back left
+		//{ 0.5f, 0.5f, 0.5f,
+		//0.2f, 0.2f, 0.2f, 1.0f },// Top front right
+		//{ 0.5f, 0.5f, -0.5f,
+		//0.2f, 0.2f, 0.2f, 1.0f },//top back right
+		//{ -0.5f, 0.5f, -0.5f,
+		//0.2f, 0.2f, 0.2f, 1.0f }, //top back left
 
-		//BOTTOM
-		{ -0.5f, -0.5f, 0.5f,
-		0.4f, 0.4f, 0.4f, 1.0f },//Bottom front left
-		{ 0.5f, -0.5f, 0.5f,
-		0.4f, 0.4f, 0.4f, 1.0f },//Bottom front right
-		{ -0.5f, -0.5f, -0.5f,
-		0.4f, 0.4f, 0.4f, 1.0f }, //Bottom back left
-		{ 0.5f, -0.5f, 0.5f,
-		0.4f, 0.4f, 0.4f, 1.0f },// Bottom front right
-		{ 0.5f, -0.5f, -0.5f,
-		0.4f, 0.4f, 0.4f, 1.0f },//Bottom back right
-		{ -0.5f, -0.5f, -0.5f,
-		0.4f, 0.4f, 0.4f, 1.0f }, //Bottom back left
+		////BOTTOM
+		//{ -0.5f, -0.5f, 0.5f,
+		//0.4f, 0.4f, 0.4f, 1.0f },//Bottom front left
+		//{ 0.5f, -0.5f, 0.5f,
+		//0.4f, 0.4f, 0.4f, 1.0f },//Bottom front right
+		//{ -0.5f, -0.5f, -0.5f,
+		//0.4f, 0.4f, 0.4f, 1.0f }, //Bottom back left
+		//{ 0.5f, -0.5f, 0.5f,
+		//0.4f, 0.4f, 0.4f, 1.0f },// Bottom front right
+		//{ 0.5f, -0.5f, -0.5f,
+		//0.4f, 0.4f, 0.4f, 1.0f },//Bottom back right
+		//{ -0.5f, -0.5f, -0.5f,
+		//0.4f, 0.4f, 0.4f, 1.0f }, //Bottom back left
+};
+
+GLuint indices[] = {
+	//front
+	0, 1, 2,
+	0, 3, 2,
+
+	//left
+	4, 5, 1,
+	4, 1, 0,
+
+	//right
+	3, 7, 2,
+	7, 6, 2,
+
+	//bottom
+	1, 5, 2,
+	6, 2, 1,
+
+	//top
+	5, 0, 7,
+	5, 7, 3,
+
+	//back
+	4, 5, 6,
+	4, 7, 6
 };
 
 
@@ -124,16 +167,11 @@ bool running = true;
 SDL_GLContext glcontext = NULL;
 
 GLuint triangleVBO;
-
+GLuint triangleEBO;
 
 bool rotating = false;
 
 #pragma endregion
-
-
-
-
-
 
 #pragma region Methods
 
@@ -152,6 +190,8 @@ void render()
 	//Make the new VBO active. Repeat here as a sanity check( may have changed 
 	//since initialisation)
 	glBindBuffer(GL_ARRAY_BUFFER, triangleVBO);
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, triangleEBO);
 
 	//Establish its 3 coordinates per vertex with zero stride(space between elements) 
 	//in array and contain floating point numbers
@@ -184,17 +224,15 @@ void render()
 	//translate
 	glTranslatef(0.0f, 0.0f, -6.0f);
 
-	//Actually draw the triangle, giving the number of vertices provided
-	//glDrawArrays(GL_TRIANGLES, 0, sizeof(triangleData) / (3 * sizeof(float), 5));
-	//glMultiDrawArrays(GL_TRIANGLES, 0, GL_UNSIGNED_INT, 2);
 
 	glRotatef(-45, 0.0f, 1.0f, 0.0f);
-	glDrawArrays(GL_TRIANGLES, 0, sizeof(triangleData) / (sizeof(Vertex)));
+	glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(GLuint),
+		GL_UNSIGNED_INT, 0);
 
-	////glRotatef(60, 0.5, 0.5, 0.0);	
-	//glTranslatef(0.5f, -0.5f, 0.0f);
-	//glDrawArrays(GL_TRIANGLES, 0, sizeof(triangleData) / (sizeof(Vertex)));
-
+	//Translate position for second cube
+	glTranslatef(2.0f, 0.0f, 0.0f);
+	glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(GLuint),
+		GL_UNSIGNED_INT, 0);
 
 
 	
@@ -250,6 +288,13 @@ void initGeometry()
 	//copy vertex data to VBO
 	glBufferData(GL_ARRAY_BUFFER, sizeof(triangleData), triangleData, GL_STATIC_DRAW);
 
+	//create buffer
+	glGenBuffers(1, &triangleEBO);
+	//Make the EBO active
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, triangleEBO);
+	//Copy Index data to the EBO
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices,
+		GL_STATIC_DRAW);
 }
 
 //Function to set/reset viewport
@@ -297,6 +342,7 @@ void InitWindow(int width, int height, bool fullscreen) {
 
 void CleanUp()
 {
+	glDeleteBuffers(1, &triangleEBO);
 	glDeleteBuffers(1, &triangleVBO);
 	SDL_DestroyWindow(window);
 	SDL_Quit();
