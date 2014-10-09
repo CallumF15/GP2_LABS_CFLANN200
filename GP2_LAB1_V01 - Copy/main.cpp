@@ -6,16 +6,12 @@
 #include <SDL_opengl.h>
 #include <gl/GLU.h>
 #include "Vertex.h"
+#include "camera.h"
 
 
 using namespace std;
 
 
-struct vertexPos
-{
-	float x, y;
-	float r, g, b;
-};
 
 Vertex triangleData[] = {
 
@@ -28,7 +24,8 @@ Vertex triangleData[] = {
 		0.0f, 1.0f, 1.0f, 1.0f }, //Bottom Right
 		{ 0.5f, 0.5f, 0.5f,
 		1.0f, 0.0f, 1.0f, 1.0f },// Top Right
-		//back
+
+	//back
 		{ -0.5f, 0.5f, -0.5f,
 		1.0f, 0.0f, 1.0f, 1.0f },// Top Left
 		{ -0.5f, -0.5f, -0.5f,
@@ -160,6 +157,17 @@ SDL_Window * window;
 const int WINDOW_WIDTH = 640;
 const int WINDOW_HEIGHT = 480;
 
+//The dimensions of the level
+const int LEVEL_WIDTH = 1280;
+const int LEVEL_HEIGHT = 960;
+
+//The dot dimensions
+const int DOT_WIDTH = 20;
+const int DOT_HEIGHT = 20;
+
+//surfaces
+SDL_Surface *dot = NULL;
+
 //other
 bool running = true;
 
@@ -175,9 +183,6 @@ bool isMoving = false;
 int rotationSpeed = 5;
 float translationOrigin = 0.0f;
 float horizonalSpeed = 0.5f;
-
-float x = 0.0f;
-float y = 5.0f;
 
 #pragma endregion
 
@@ -217,7 +222,7 @@ void render()
 	//Reset using the Indentity Matrix
 	glLoadIdentity();
 	//Translate to -5.0f on z-axis
-	glTranslatef(0.0f, 0.0f, -5.0f);d
+	glTranslatef(0.0f, 0.0f, -5.0f);
 
 
 	//Switch to ModelView
@@ -235,8 +240,6 @@ void render()
 	glTranslatef(0.0f, 0.0f, -6.0f);
 
 
-	
-
 
 	//Translate position for second cube
 	if (isMoving)
@@ -247,6 +250,9 @@ void render()
 
 	//Reset using the Indentity Matrix
 	glLoadIdentity();
+
+	
+	
 
 	//setting the point of cube
 	glTranslatef(2.0f, 0.0f, -6.0f);
@@ -394,6 +400,8 @@ int main(int argc, char * arg[]) {
 	SDL_Event event;
 
 
+
+
 	while (running){
 		while (SDL_PollEvent(&event)){
 
@@ -437,10 +445,11 @@ int main(int argc, char * arg[]) {
 					break;
 				default:
 					break;
-
-
 				}
 
+			case SDL_MOUSEMOTION:
+				//mouse stuff here
+				break;	
 
 			}
 		}
@@ -456,5 +465,7 @@ int main(int argc, char * arg[]) {
 
 
 }
+
+
 
 #pragma endregion
