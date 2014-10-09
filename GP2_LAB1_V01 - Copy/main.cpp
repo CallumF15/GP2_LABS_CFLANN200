@@ -163,6 +163,7 @@ const int WINDOW_HEIGHT = 480;
 //other
 bool running = true;
 
+
 //SDL GL Context
 SDL_GLContext glcontext = NULL;
 
@@ -170,6 +171,13 @@ GLuint triangleVBO;
 GLuint triangleEBO;
 
 bool rotating = false;
+bool isMoving = false;
+int rotationSpeed = 5;
+float translationOrigin = 0.0f;
+float horizonalSpeed = 0.5f;
+
+float x = 0.0f;
+float y = 5.0f;
 
 #pragma endregion
 
@@ -209,7 +217,7 @@ void render()
 	//Reset using the Indentity Matrix
 	glLoadIdentity();
 	//Translate to -5.0f on z-axis
-	glTranslatef(0.0f, 0.0f, -5.0f);
+	glTranslatef(0.0f, 0.0f, -5.0f);d
 
 
 	//Switch to ModelView
@@ -219,18 +227,32 @@ void render()
 
 
 	//calculates view matrix/pushes onto top of matrix stack
-	gluLookAt(0.0, 0.0, 0.0, 0.0, 0.0, -1.0f, 0.0, 1.0, 0.0);
+	gluLookAt(0.0, 0.0, 0.0,
+			  0.0, 0.0, -1.0f, 
+			  0.0, 1.0, 0.0);
 
 	//translate
 	glTranslatef(0.0f, 0.0f, -6.0f);
 
 
-	glRotatef(-45, 0.0f, 1.0f, 0.0f);
+	
+
+
+	//Translate position for second cube
+	if (isMoving)
+    glTranslatef(translationOrigin, 0.0f, 0.0f);
 	glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(GLuint),
 		GL_UNSIGNED_INT, 0);
 
-	//Translate position for second cube
-	glTranslatef(2.0f, 0.0f, 0.0f);
+
+	//Reset using the Indentity Matrix
+	glLoadIdentity();
+
+	//setting the point of cube
+	glTranslatef(2.0f, 0.0f, -6.0f);
+
+	if (rotating)
+		glRotatef(rotationSpeed, 0.0f, 1.0f, 0.0f);
 	glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(GLuint),
 		GL_UNSIGNED_INT, 0);
 
@@ -389,20 +411,36 @@ int main(int argc, char * arg[]) {
 				switch (event.key.keysym.sym){
 
 				case SDLK_RIGHT:
-			
+					rotating = true;
+					rotationSpeed++;
 					break;
 				case SDLK_LEFT:
 					rotating = true;
+					rotationSpeed--;
 					break;
+				case SDLK_a:
+					//second cube movement
+					isMoving = true;
+					translationOrigin -= horizonalSpeed;
+					break;
+				case SDLK_s:
+					//second cube movement
+					isMoving = true;
+					translationOrigin += horizonalSpeed;
+					break;
+
 				case SDLK_UP:
-				
+
 					break;
 				case SDLK_DOWN:
-				
+
 					break;
 				default:
 					break;
+
+
 				}
+
 
 			}
 		}
